@@ -50,7 +50,7 @@ import java.util.Map;
  * </table>
  * Specify both {@link #KEY_MAX_WIDTH} and {@link #KEY_MAX_HEIGHT} to enable
  * adaptive playback (seamless resolution change) for a video decoder that
- * supports it ({@link MediaCodecInfo.CodecCapabilities#FEATURE_AdaptivePlayback}).
+ * supports it (MediaCodecInfo.CodecCapabilities#FEATURE_AdaptivePlayback).
  * The values are used as hints for the codec: they are the maximum expected
  * resolution to prepare for.  Depending on codec support, preparing for larger
  * maximum resolution may require more memory even if that resolution is never
