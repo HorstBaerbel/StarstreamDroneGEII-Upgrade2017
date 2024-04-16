@@ -3,8 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StarstreamDroneGEII-Upgrade2017.iml" filepath="$PROJECT_DIR$/StarstreamDroneGEII-Upgrade2017.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vitamio/vitamio.iml" filepath="$PROJECT_DIR$/vitamio/vitamio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StarstreamDroneGEII-Upgrade2017.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.iml" filepath="$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.main.iml" filepath="$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/vitamio/StarstreamDroneGEII-Upgrade2017.vitamio.unitTest.iml" />
     </modules>
   </component>
 </project>
