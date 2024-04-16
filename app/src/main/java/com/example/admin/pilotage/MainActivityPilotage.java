@@ -31,7 +31,6 @@ import io.vov.vitamio.MediaPlayer;
  * ******************************************************
  * CHANGELOG :
  ********************************************************
-
  *********************************************************/
 
 public class MainActivityPilotage extends AppCompatActivity {
@@ -100,8 +99,8 @@ public class MainActivityPilotage extends AppCompatActivity {
 
     // Bouton affichage resumées vol (Navdata):
     Button buttAffNavDataBDD;
-    Button  butAfLed;
-    Button   butAfShot;
+    Button butAfLed;
+    Button butAfShot;
 
 
     // Valueur pourcentage pilotage
@@ -139,11 +138,8 @@ public class MainActivityPilotage extends AppCompatActivity {
     boolean bAppui;
     int iTouche;
     int iPad;
-    double dJoy1X, dJoy1Y,dJoy2X, dJoy2Y;
+    double dJoy1X, dJoy1Y, dJoy2X, dJoy2Y;
     GamepadManager Manette;
-
-
-
 
 
     @Override
@@ -165,14 +161,11 @@ public class MainActivityPilotage extends AppCompatActivity {
         mNavDataManager = new NavdataManager_BDD(this);
 
         //Initialisation video si paramètre activer
-        if(bActivationVideo==true){
+        if (bActivationVideo == true) {
             InitialiseVideo();
         }
         // Initialisation des variables
         InitialiseVariables();
-
-
-
 
 
         //Initialisation des tâches periodiques
@@ -252,7 +245,7 @@ public class MainActivityPilotage extends AppCompatActivity {
         mBuilderAffichageNavDataResume.setPositiveButton("Details", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-               ShowCompleteFlightData();
+                ShowCompleteFlightData();
             }
         });
 
@@ -342,40 +335,39 @@ public class MainActivityPilotage extends AppCompatActivity {
     }
 
 
-    public void Shot(View view){
+    public void Shot(View view) {
         try {
             mSaver.SavePicture();
-        }
-        catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Erreur photo",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Erreur photo", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     // Instruction de la tache periodique
     class PeriodicSendFlyCommand implements Runnable {
-            public void run() {
+        public void run() {
 
-                BBuffer = mDrone.GetBuffer();
-				
-				// Recupération des NavData dans variables correspondantes a partir du buffer
-				ParseNavData();
-				
-				//Mise a jour string NavData
-				SetStringNavData();
+            BBuffer = mDrone.GetBuffer();
 
-                if(bDroneEnVol == true) {
-                    strATComand = mPilot.BuildCMD(bFlag);
-                    mDrone.SendCMD(strATComand);
-                }
+            // Recupération des NavData dans variables correspondantes a partir du buffer
+            ParseNavData();
+
+            //Mise a jour string NavData
+            SetStringNavData();
+
+            if (bDroneEnVol == true) {
+                strATComand = mPilot.BuildCMD(bFlag);
+                mDrone.SendCMD(strATComand);
             }
-
         }
+
+    }
 
     class PeriodicRecordingBDD implements Runnable {
         public void run() {
 
-            if(bDroneEnVol == true) {
+            if (bDroneEnVol == true) {
                 mNavDataManager.open();
                 mNavDataManager.addNavdata(new Navdata_BDD(0, sNavBatterie, sNavAv_Ar, sNavRot, sNavG_D, sNavSpeed, sNavAltitude));
 
@@ -399,10 +391,10 @@ public class MainActivityPilotage extends AppCompatActivity {
 
     class Maj_UI_WD implements Runnable {
         public void run() {
-            if(bDebugMode==true) {
+            if (bDebugMode == true) {
                 txtATComand.setText(strATCWD);
             }
-			SetIndicatorNavData();
+            SetIndicatorNavData();
 
         }
     }
@@ -411,25 +403,25 @@ public class MainActivityPilotage extends AppCompatActivity {
         strATComand = mPilot.Atterrissage();
         mDrone.SendCMD(strATComand);
         Toast.makeText(getApplicationContext(), "Forcage envoie commande atterissage !", Toast.LENGTH_SHORT).show();
-        bDroneEnVol=false;
+        bDroneEnVol = false;
     }
 
     // Lorque l'application passe en arriere plan ou se ferme peut être
     public void onStop() {
         super.onStop();
-        if(bDroneEnVol == true) {
+        if (bDroneEnVol == true) {
             strATComand = mPilot.Atterrissage();
             mDrone.SendCMD(strATComand);
             Toast.makeText(getApplicationContext(), "Aterissage du drone !", Toast.LENGTH_LONG).show();
-            bDroneEnVol=false;
+            bDroneEnVol = false;
         }
     }
-	
-	private void GetBundleSettingsStartup(){
-		// Reception des données de classe StartupSettingActivity
-       Bundle mBundle = getIntent().getExtras();
-	   
-	    if(mBundle!=null) {
+
+    private void GetBundleSettingsStartup() {
+        // Reception des données de classe StartupSettingActivity
+        Bundle mBundle = getIntent().getExtras();
+
+        if (mBundle != null) {
             bIndicBatterie = mBundle.getBoolean("INDIC_BATT");
             bIndicAltitude = mBundle.getBoolean("INDIC_ALT");
             bIndicVitesse = mBundle.getBoolean("INDIC_VIT");
@@ -440,17 +432,17 @@ public class MainActivityPilotage extends AppCompatActivity {
             bDebugMode = mBundle.getBoolean("DEBUG_MODE");
             bAffJoy = mBundle.getBoolean("AffJoy");
         }
-	}
-	
-	private void InitialiseUI(){
-		
-		// Association textview NavData:
-        txtNavAltitude =  (TextView) findViewById(R.id.indic_altitude);
-        txtNavAvArr =  (TextView) findViewById(R.id.indic_avant_arriere);
-        txtNavBatterie =  (TextView) findViewById(R.id.indic_batterie);
-        txtNavG_D =  (TextView) findViewById(R.id.indic_gauche_droite);
-        txtNavRot =  (TextView) findViewById(R.id.indic_rotation);
-        txtNavSpeed =  (TextView) findViewById(R.id.indic_vitesse);
+    }
+
+    private void InitialiseUI() {
+
+        // Association textview NavData:
+        txtNavAltitude = (TextView) findViewById(R.id.indic_altitude);
+        txtNavAvArr = (TextView) findViewById(R.id.indic_avant_arriere);
+        txtNavBatterie = (TextView) findViewById(R.id.indic_batterie);
+        txtNavG_D = (TextView) findViewById(R.id.indic_gauche_droite);
+        txtNavRot = (TextView) findViewById(R.id.indic_rotation);
+        txtNavSpeed = (TextView) findViewById(R.id.indic_vitesse);
 
         // Association textview Debug
         txtATComand = (TextView) findViewById(R.id.txtATCMD);
@@ -458,16 +450,16 @@ public class MainActivityPilotage extends AppCompatActivity {
         txtTaskPeriodique.setText(iDurationFlyCommand + "MS");
 
         //Bouton affichage données vol BDD NavData:
-        buttAffNavDataBDD=(Button)findViewById(R.id.butt_data_flying);
+        buttAffNavDataBDD = (Button) findViewById(R.id.butt_data_flying);
 
-        butAfLed=(Button)findViewById(R.id.butt_led);
-        butAfShot=(Button)findViewById(R.id.butt_shot);
+        butAfLed = (Button) findViewById(R.id.butt_led);
+        butAfShot = (Button) findViewById(R.id.butt_shot);
 
         // Instantiation of the Left Joystick
-        JoyLeft= (JoystickView)findViewById(R.id.JoyLeft);
-        JoyRight= (JoystickView)findViewById(R.id.JoyRight);
+        JoyLeft = (JoystickView) findViewById(R.id.JoyLeft);
+        JoyRight = (JoystickView) findViewById(R.id.JoyRight);
 
-		// Asociation SurfaceView objet Preview
+        // Asociation SurfaceView objet Preview
         mPreview = (SurfaceView) findViewById(R.id.surface);
 
         // This code force the view to be fullscreen and with the landscape orientation.
@@ -477,35 +469,35 @@ public class MainActivityPilotage extends AppCompatActivity {
         // Disparition du bouton d'engistrement de la BDD au déamrage
         buttAffNavDataBDD.setVisibility(View.INVISIBLE);
 
-		// Montrer/cahcer indicateur suivant options choisie au démarage:
-		if(bIndicBatterie == false){
+        // Montrer/cahcer indicateur suivant options choisie au démarage:
+        if (bIndicBatterie == false) {
             txtNavBatterie.setVisibility(View.GONE);
         }
-        if (bIndicAltitude == false){
+        if (bIndicAltitude == false) {
             txtNavAltitude.setVisibility(View.GONE);
         }
-        if(bIndicVitesse == false){
+        if (bIndicVitesse == false) {
             txtNavSpeed.setVisibility(View.GONE);
         }
-        if (bIndicAvArr == false){
+        if (bIndicAvArr == false) {
             txtNavAvArr.setVisibility(View.GONE);
         }
-        if(bIndicGD == false){
+        if (bIndicGD == false) {
             txtNavG_D.setVisibility(View.GONE);
         }
-        if (bIndicRotation == false){
+        if (bIndicRotation == false) {
             txtNavRot.setVisibility(View.GONE);
         }
 
-        if(bActivationVideo==false){
+        if (bActivationVideo == false) {
             mPreview.setVisibility(View.GONE);
-		}
-		
-		if(bDebugMode==false){
+        }
+
+        if (bDebugMode == false) {
             txtATComand.setVisibility(View.GONE);
             txtTaskPeriodique.setVisibility(View.GONE);
         }
-        if (bAffJoy==false){
+        if (bAffJoy == false) {
             JoyLeft.setVisibility(View.INVISIBLE);
             JoyRight.setVisibility(View.INVISIBLE);
             butAfLed.setVisibility(View.INVISIBLE);
@@ -515,45 +507,44 @@ public class MainActivityPilotage extends AppCompatActivity {
         }
 
 
-		
-}
+    }
 
-	private void InitialiseVideo(){
-            metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            mVideo = new VideoManager(this, mPreview,metrics);
-            mMediaPlayer = mVideo.PlayVideo();
-            mSaver = new PhotoSaver(this,mMediaPlayer);
-	}
+    private void InitialiseVideo() {
+        metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mVideo = new VideoManager(this, mPreview, metrics);
+        mMediaPlayer = mVideo.PlayVideo();
+        mSaver = new PhotoSaver(this, mMediaPlayer);
+    }
 
-	private void InitialiseVariables(){
-		
+    private void InitialiseVariables() {
+
         //Initialisation de la valeur du pilotage
         fPilot = 1.0f;
 
         // Initialisation NavData
-        iNavAltitude=0;
-        iNavAv_Ar=0;
-        iNavBatterie=0;
-        iNavG_D=0;
-        iNavRot=0;
-        iNavSpeed=0;
+        iNavAltitude = 0;
+        iNavAv_Ar = 0;
+        iNavBatterie = 0;
+        iNavG_D = 0;
+        iNavRot = 0;
+        iNavSpeed = 0;
 
         // Iniitialisation variable resumé BDD Navdata
-        iAltMax=0;
-        iVitMax=0;
-        iAltMoy=0;
-        iVitMoy=0;
-		
-		// Initialisation de la varaible envoi trame période périodique
-		bDroneEnVol = false;
-		
+        iAltMax = 0;
+        iVitMax = 0;
+        iAltMoy = 0;
+        iVitMoy = 0;
+
+        // Initialisation de la varaible envoi trame période périodique
+        bDroneEnVol = false;
+
         // Definition de la trame en null pour eviter crash, Pas utiliser dans cette version ...
         mPilot.Hovering();
-	}
+    }
 
-	private void InitPeriodicTask(){
-		// Creation objet tache periodique :
+    private void InitPeriodicTask() {
+        // Creation objet tache periodique :
         ScheduledExecutorService scheduleTaskExecutor;
 
         PeriodicSendFlyCommand mPeriodicSendFlyCommand = new PeriodicSendFlyCommand();
@@ -567,46 +558,46 @@ public class MainActivityPilotage extends AppCompatActivity {
         scheduleTaskExecutor.scheduleAtFixedRate(mPeriodicSendFlyCommand, 0, iDurationFlyCommand, TimeUnit.MILLISECONDS);
         scheduleTaskExecutor.scheduleAtFixedRate(mPeriodicSendWDCommand, 0, iDurationWDCommand, TimeUnit.MILLISECONDS);
         scheduleTaskExecutor.scheduleAtFixedRate(mPeriodicRecordingBDD, 0, iDurationRecordingBDD, TimeUnit.MILLISECONDS);
-	}
+    }
 
-	private void ParseNavData(){
-		iNavBatterie = mNavData.GetBattery(BBuffer);
-        iNavAltitude= mNavData.GetAltitude(BBuffer);
+    private void ParseNavData() {
+        iNavBatterie = mNavData.GetBattery(BBuffer);
+        iNavAltitude = mNavData.GetAltitude(BBuffer);
         iNavAv_Ar = mNavData.GetPitch(BBuffer);
-        iNavG_D= mNavData.GetRoll(BBuffer);
-        iNavRot= mNavData.GetYaw(BBuffer);
-		iNavSpeed=mNavData.GetSpeed(BBuffer);
-	}
-	
-	private void SetStringNavData(){
-		sNavBatterie=String.valueOf(iNavBatterie);
-		sNavAltitude=String.valueOf(iNavAltitude);
-		sNavAv_Ar=String.valueOf(iNavAv_Ar);
-		sNavG_D=String.valueOf(iNavG_D);
-		sNavRot=String.valueOf(iNavRot);
-		sNavSpeed=String.valueOf(iNavSpeed);
-	}
-	
-	private void SetIndicatorNavData(){
+        iNavG_D = mNavData.GetRoll(BBuffer);
+        iNavRot = mNavData.GetYaw(BBuffer);
+        iNavSpeed = mNavData.GetSpeed(BBuffer);
+    }
+
+    private void SetStringNavData() {
+        sNavBatterie = String.valueOf(iNavBatterie);
+        sNavAltitude = String.valueOf(iNavAltitude);
+        sNavAv_Ar = String.valueOf(iNavAv_Ar);
+        sNavG_D = String.valueOf(iNavG_D);
+        sNavRot = String.valueOf(iNavRot);
+        sNavSpeed = String.valueOf(iNavSpeed);
+    }
+
+    private void SetIndicatorNavData() {
         if (bIndicBatterie == true) {
             txtNavBatterie.setText(getString(R.string.battery_short, iNavBatterie));
         }
-        if(bIndicAltitude ==true) {
+        if (bIndicAltitude == true) {
             txtNavAltitude.setText(getString(R.string.altitude_short, iNavAv_Ar));
         }
-        if(bIndicVitesse==true) {
+        if (bIndicVitesse == true) {
             txtNavSpeed.setText(getString(R.string.speed_short, iNavSpeed));
         }
-        if(bIndicAvArr==true) {
+        if (bIndicAvArr == true) {
             txtNavAvArr.setText(getString(R.string.forward_backward_short, iNavAv_Ar));
         }
-        if(bIndicGD ==true) {
+        if (bIndicGD == true) {
             txtNavG_D.setText(getString(R.string.left_right_short, iNavG_D));
         }
-        if(bIndicRotation==true) {
+        if (bIndicRotation == true) {
             txtNavRot.setText(getString(R.string.rotation_short, iNavRot));
         }
-	}
+    }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
@@ -654,9 +645,8 @@ public class MainActivityPilotage extends AppCompatActivity {
                     // Text2.setText("Y");// APPUI Y
                     try {
                         mSaver.SavePicture();
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "Erreur photo",Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "Erreur photo", Toast.LENGTH_SHORT).show();
                     }
                     break;
 
@@ -668,12 +658,12 @@ public class MainActivityPilotage extends AppCompatActivity {
                     //Text2.setText("select");// APPUI SELECT
                     break;
 
-                case 7:			// APPUI R1
+                case 7:            // APPUI R1
                     // Text2.setText("R1");
 
                     break;
 
-                case 8:			// APPUI L1
+                case 8:            // APPUI L1
                     //Text2.setText("L1");
                     strATComand = mPilot.LedControl2();
                     mDrone.SendCMD(strATComand);
@@ -681,69 +671,64 @@ public class MainActivityPilotage extends AppCompatActivity {
 
                     break;
 
-                case 9:			// APPUI R2
+                case 9:            // APPUI R2
                     //Text2.setText("R2");
 
                     break;
 
-                case 10:			// APPUI L2
+                case 10:            // APPUI L2
                     //Text2.setText("L2");
                     break;
 
             }
 
-        }
-        else
-        {
+        } else {
 
-            switch(iTouche)
-            {
-                case 1:			// RELACHE A
+            switch (iTouche) {
+                case 1:            // RELACHE A
                     // Text2.setText("");
                     break;
 
-                case 2:			// RELACHE B
+                case 2:            // RELACHE B
                     // Text2.setText("");
                     break;
 
-                case 3:			// RELACHE X
+                case 3:            // RELACHE X
                     //Text2.setText("");
                     break;
 
-                case 4:			// RELACHE Y
+                case 4:            // RELACHE Y
                     //Text2.setText("");
                     break;
 
-                case 5:		// RELACHE START
+                case 5:        // RELACHE START
                     // Text2.setText("");
                     break;
                 case 6:
                     // Text2.setText("");// APPUI SELECT
                     break;
 
-                case 7:			// APPUI R1
+                case 7:            // APPUI R1
                     // Text2.setText("");
 
                     break;
 
-                case 8:			// APPUI L1
+                case 8:            // APPUI L1
                     //Text2.setText("");
 
                     break;
 
-                case 9:			// APPUI R2
+                case 9:            // APPUI R2
                     //Text2.setText("");
 
                     break;
 
-                case 10:			// APPUI L2
+                case 10:            // APPUI L2
                     //Text2.setText("");
                     break;
 
 
             }
-
-
 
 
         }
@@ -751,30 +736,29 @@ public class MainActivityPilotage extends AppCompatActivity {
     }
 
     @Override
-    public boolean dispatchGenericMotionEvent(MotionEvent motionEvent){		// FONCTION S'APPELLANT pour le pad et les joy
+    public boolean dispatchGenericMotionEvent(MotionEvent motionEvent) {        // FONCTION S'APPELLANT pour le pad et les joy
 
         // RECUPERATION DE LA DIRECTION PRESSEE
         iPad = Manette.GetDPad(motionEvent);
 
-        switch(iPad)
-        {
-            case 1:		// APPUI HAUT
+        switch (iPad) {
+            case 1:        // APPUI HAUT
                 // Text2.setText("HAUT");
                 break;
 
-            case 2:			// APPUI DROITE
+            case 2:            // APPUI DROITE
                 // Text2.setText("DROIT");
                 break;
 
-            case 3:		// APPUI BAS
+            case 3:        // APPUI BAS
                 //Text2.setText("BAS");
                 break;
 
-            case 4:		// APPUI GAUCHE
+            case 4:        // APPUI GAUCHE
                 //Text2.setText("GAUCHE");
                 break;
 
-            default :		// RELACHEMENT
+            default:        // RELACHEMENT
                 //Text2.setText("");
                 break;
 
@@ -791,15 +775,15 @@ public class MainActivityPilotage extends AppCompatActivity {
         dJoy2X = Manette.GetJ2PosX(motionEvent);
         dJoy2Y = Manette.GetJ2PosY(motionEvent);
 
-        fJoy1x=(float) dJoy1X;
-        fJoy1y=(float) dJoy1Y;
-        fJoy2x=(float) dJoy2X;
-        fJoy2y=(float) dJoy2Y;
+        fJoy1x = (float) dJoy1X;
+        fJoy1y = (float) dJoy1Y;
+        fJoy2x = (float) dJoy2X;
+        fJoy2y = (float) dJoy2Y;
 
-        bFlag=true;
+        bFlag = true;
         try {
 
-            mPilot.PilotageHorizontal( fJoy1x, -fJoy1y);
+            mPilot.PilotageHorizontal(fJoy1x, -fJoy1y);
 
         } catch (NumberFormatException e) {
             bFlag = false;
@@ -807,21 +791,15 @@ public class MainActivityPilotage extends AppCompatActivity {
         try {
 
 
-            mPilot.PilotageVertical(fJoy2x,-fJoy2y);
+            mPilot.PilotageVertical(fJoy2x, -fJoy2y);
 
         } catch (NumberFormatException e) {
             bFlag = false;
         }
-
-
-
 
 
         return true;
     }
 
 
-
-
-
-    }
+}
