@@ -18,13 +18,13 @@ The differents goals reached at this point are:
 * Clone the repository into an arbitrary directory or download the ZIP snd unpack it.
 * Open the project in Android Studio "Iguana" 2023.2.1 or higher, eventually upgrade the Gradle plug-in.
 * Compile and download the app onto an Android device which is in minimum version 5.1 (API 22).
-* Set the limits to middle values (maximum values can causes instability for the drone) and select a control mode (Virtual sticks or Gamepad)
+* Set the limits to middle values (maximum values can causes instability for the drone) and select a control mode (virtual joysticks or gamepad)
 * Then press the "Start" button and wait several seconds before landing.
 * Enjoy flying the drone!
 
 ## Library Dependencies
 
-Our Project uses following libraries :
+Our project uses following libraries :
 
 * Vitamio: https://github.com/yixia/VitamioBundle - Used to handle the Drone’s video stream
 
@@ -70,7 +70,7 @@ I made the repository build again with Android Studio "Iguana" 2023.2.1, fixed s
 This project is licensed under the terms of the [MIT license](LICENSE).
 
 ### Caveats / Todos
-* Vitamio is very old. It is proprietary and can not be updated. This is a problem because:
+* [Vitamio](https://github.com/yixia/VitamioBundle) is very old. It is proprietary and can not be updated. This is a problem because:
   * The Android SDK needs to be < 23, because as of 23+ text relocations in 32-bit libraries are not allowed anymore. This means the app will crash due to the ffmpeg libraries packed into libarm.so (actually a ZIP file) having text relocations and not being loaded. This can only be fixed by compiling or using newer ffmpeg libraries with the correct settings.
-  * Android complains about "Unable to match the desired swap behavior." which seems to come from the OpenGL functions in the native [vitamio](https://github.com/yixia/VitamioBundle) libvinit.so libraries, which we don't have the source to.
+  * Android complains about "Unable to match the desired swap behavior." which seems to come from the OpenGL functions in the native [Vitamio](https://github.com/yixia/VitamioBundle) libvinit.so libraries, which we don't have the source to.
   * There are no libraries for 64-bit devices.
