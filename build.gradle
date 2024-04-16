@@ -23,6 +23,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+// See: https://stackoverflow.com/questions/21289930/vitamio-sample-error-java-lang-unsatisfiedlinkerror-couldnt-load-vinit-findl
 task copyNativeLibs(type: Copy) {
     from(new File(project(':vitamio').getProjectDir(), 'libs')) { include '**/*.so' }
     into new File(buildDir, 'native-libs')
