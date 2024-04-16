@@ -428,7 +428,7 @@ public class MediaPlayer {
 
   /**
    * Set the segments source url
-   * @param segments the array path of the url e.g. Segmented video list
+   * @param uris the array path of the url e.g. Segmented video list
    * @param cacheDir e.g. getCacheDir().toString()
    */
   public void setDataSegments(String[] uris, String cacheDir) {

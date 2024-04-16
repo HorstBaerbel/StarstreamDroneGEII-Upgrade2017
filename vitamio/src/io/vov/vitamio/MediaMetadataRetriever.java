@@ -81,7 +81,7 @@ public class MediaMetadataRetriever {
     } catch (Exception e) {
       closeFD();
     }
-    Log.e("Couldn't open file on client side, trying server side %s", uri.toString());
+    Log.e("Metadata", "Couldn't open file on client side, trying server side: " + uri.toString());
     setDataSource(uri.toString());
     return;
   }
