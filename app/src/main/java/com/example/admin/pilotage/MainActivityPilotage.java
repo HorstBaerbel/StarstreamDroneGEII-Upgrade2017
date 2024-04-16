@@ -149,6 +149,8 @@ public class MainActivityPilotage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // make sure to keep the screen on
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         //Obtention des paramètres de SettingsStartupActivity
         GetBundleSettingsStartup();
         //Asociation de la vue au XML
