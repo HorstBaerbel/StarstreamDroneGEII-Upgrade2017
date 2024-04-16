@@ -80,7 +80,7 @@
         android:allowUndo="false"
         android:checked="true"
         android:singleLine="false"
-        android:text="@string/forward_backward_short"
+        android:text="@string/forward_backward"
         android:textAlignment="textEnd" />
 
     <CheckBox
@@ -95,7 +95,7 @@
         android:allowUndo="false"
         android:checked="true"
         android:singleLine="false"
-        android:text="@string/left_right_short"
+        android:text="@string/left_right"
         android:textAlignment="textEnd" />
 
     <CheckBox
@@ -155,12 +155,14 @@
 
     <Spinner
         android:id="@+id/spinner_type_pilotage"
-        android:layout_width="wrap_content"
+        android:layout_width="199dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/text_interface_pilotage"
         android:layout_alignStart="@+id/chk_altitude_max"
         android:layout_alignBottom="@+id/text_interface_pilotage"
+        android:layout_marginStart="-105dp"
         android:layout_marginLeft="34dp"
+        android:layout_marginBottom="-2dp"
         android:entries="@array/controltype_arrays"
         android:prompt="@string/pilotagetype_prompt"
         android:spinnerMode="dropdown" />
@@ -176,6 +178,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textStyle="bold|normal|italic" />
 
+
     <TextView
         android:id="@+id/text_cameratype"
         android:layout_width="wrap_content"
@@ -183,21 +186,26 @@
         android:layout_below="@+id/text_config_drone"
         android:layout_alignEnd="@+id/text_interface_pilotage"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="31dp"
         android:text="@string/cameratype_choice"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/cameraspinner"
-        android:entries="@array/cameratype_arrays"
-        android:prompt="@string/cameratype_prompt"
-        android:layout_marginLeft="34dp"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/text_cameratype"
         android:layout_alignStart="@+id/text_config_drone"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="34dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="82dp"
+        android:entries="@array/cameratype_arrays"
+        android:prompt="@string/cameratype_prompt" />
 
     <TextView
         android:id="@+id/text_altitude_max"
@@ -205,11 +213,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cameraspinner"
         android:layout_alignStart="@+id/seekbar_altitude_max"
+        android:layout_marginStart="0dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
         android:text="@string/max_altitude"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
 
     <CheckBox
         android:id="@+id/chk_altitude_max"
@@ -228,14 +236,16 @@
         android:textAlignment="textEnd" />
 
     <SeekBar
+        android:id="@+id/seekbar_altitude_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/seekbar_altitude_max"
-        android:max="5000"
         android:layout_below="@+id/text_altitude_max"
-        android:layout_marginTop="3dp"
         android:layout_alignStart="@+id/text_cameratype"
-        android:layout_alignEnd="@+id/chk_rotation" />
+        android:layout_alignEnd="@+id/chk_rotation"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="1dp"
+        android:max="5000" />
 
     <TextView
         android:id="@+id/text_maximum_yaw_speed"
@@ -243,6 +253,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekbar_altitude_max"
         android:layout_alignStart="@+id/seekbar_altitude_max"
+        android:layout_marginStart="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:text="@string/max_yaw_speed"
@@ -284,7 +295,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekbar_vertical_speed_max"
         android:layout_alignStart="@+id/text_maximum_vertical_speed"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="6dp"
         android:text="@string/max_pitchroll_angles"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -334,19 +346,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/chk_virtual_joysticks"
         android:layout_alignStart="@+id/seekbar_pitch_roll_max"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:checked="false"
         android:onClick="ClickAccept"
         android:text="@string/authorized_zone_toggle"
         android:textStyle="bold" />
 
     <SeekBar
+        android:id="@+id/seekbar_pitch_roll_max"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/seekbar_pitch_roll_max"
-        android:max="5000"
         android:layout_below="@+id/text_maximum_pitch_roll_angles"
         android:layout_alignStart="@+id/seekbar_vertical_speed_max"
-        android:layout_alignEnd="@+id/seekbar_vertical_speed_max" />
+        android:layout_alignEnd="@+id/seekbar_vertical_speed_max"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="1dp"
+        android:max="5000" />
 
     <CheckBox
         android:id="@+id/chk_virtual_joysticks"
@@ -354,7 +371,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/seekbar_pitch_roll_max"
         android:layout_alignStart="@+id/chk_authorized_zone"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="9dp"
         android:text="@string/virtual_joysticks_toggle" />
 
 

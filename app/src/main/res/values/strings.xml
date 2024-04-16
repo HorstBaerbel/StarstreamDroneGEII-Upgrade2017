@@ -3,8 +3,6 @@
     <string name="indicators">Indicators</string>
     <string name="video">Video</string>
     <string name="debug">Debug</string>
-    <string name="forward_backward_short">Forward/Backward</string>
-    <string name="left_right_short">Left/Right</string>
     <string name="max_altitude">Maximum altitude :</string>
     <string name="altitude_limit_toggle">Limit</string>
     <string name="max_yaw_speed">Maximum yaw speed :</string>
@@ -18,11 +16,19 @@
     <string name="start">Start</string>
     <string name="landing">Landing</string>
     <string name="emergency_shutdown">Emergency\nshutdown</string>
+    <string name="forward_backward">Forward/Backward</string>
+    <string name="left_right">Left/Right</string>
     <string name="battery">Battery</string>
     <string name="altitude">Altitude</string>
     <string name="speed">Speed</string>
     <string name="rotation">Rotation</string>
     <string name="flight_data">Flight data</string>
+    <string name="forward_backward_short">F/B: %1$d</string>
+    <string name="left_right_short">L/R: %1$d</string>
+    <string name="battery_short">Bat: %1$d%%</string>
+    <string name="altitude_short">Alt: %1$dm</string>
+    <string name="speed_short">Spd: %1$dm/s</string>
+    <string name="rotation_short">Rot: %1$d</string>
     <string name="ATCMD" />
     <string name="AT_CMD">AT Command</string>
     <string name="BuildCMD">BuildCMD</string>
@@ -54,4 +60,5 @@
     </string-array>
     <string name="cameratype_prompt">Camera type</string>
     <string name="pilotagetype_prompt">Control type</string>
+    <string name="drone_settings">Drone settings</string>
 </resources>

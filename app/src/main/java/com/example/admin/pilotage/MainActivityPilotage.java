@@ -233,15 +233,15 @@ public class MainActivityPilotage extends AppCompatActivity {
         iVitMax = mNavDataManager.Speedmax();
         iVitMoy = mNavDataManager.Speedmoy();
 
-        mStrBuffer.append("Valeurs maximales :\n");
+        mStrBuffer.append("Max. values :\n");
         mStrBuffer.append("\n");
         mStrBuffer.append("Altitude: " + iAltMax + " cm\n");
-        mStrBuffer.append("Vitesse: " + iVitMax + " cm/s\n");
+        mStrBuffer.append("Speed: " + iVitMax + " cm/s\n");
         mStrBuffer.append("\n\n");
-        mStrBuffer.append("Valeurs moyennes :\n");
+        mStrBuffer.append("Min values :\n");
         mStrBuffer.append("\n");
         mStrBuffer.append("Altitude: " + iAltMoy + " cm\n");
-        mStrBuffer.append("Vitesse: " + iVitMoy + " cm/s\n");
+        mStrBuffer.append("Speed: " + iVitMoy + " cm/s\n");
         mStrBuffer.append("\n");
 
         mBuilderAffichageNavDataResume.setCancelable(true);
@@ -249,7 +249,7 @@ public class MainActivityPilotage extends AppCompatActivity {
         mBuilderAffichageNavDataResume.setMessage(mStrBuffer);
 
 
-        mBuilderAffichageNavDataResume.setPositiveButton("Détails", new DialogInterface.OnClickListener() {
+        mBuilderAffichageNavDataResume.setPositiveButton("Details", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                ShowCompleteFlightData();
@@ -276,11 +276,11 @@ public class MainActivityPilotage extends AppCompatActivity {
             while (cCursor.moveToNext()) {
 
                 mStrBuffer.append("Temps: " + (cCursor.getInt(cCursor.getColumnIndex(NavdataManager_BDD.KEY_ID)) / 2) + " s\n");
-                mStrBuffer.append("Batterie: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_BATTERY_NAV)) + " %\n");
+                mStrBuffer.append("Battery: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_BATTERY_NAV)) + " %\n");
                 mStrBuffer.append("Altitude: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_ALTITUDE_NAV)) + " mm\n");
-                mStrBuffer.append("Vitesse: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_SPEED_NAV)) + " cm/s\n");
-                mStrBuffer.append("Av/Arr: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_INCLAVAR_NAV)) + "%\n");
-                mStrBuffer.append("G/D: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_INCLDG_NAV)) + " %\n");
+                mStrBuffer.append("Speed: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_SPEED_NAV)) + " cm/s\n");
+                mStrBuffer.append("F/B: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_INCLAVAR_NAV)) + "%\n");
+                mStrBuffer.append("L/R: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_INCLDG_NAV)) + " %\n");
                 mStrBuffer.append("Rotation: " + cCursor.getString(cCursor.getColumnIndex(NavdataManager_BDD.KEY_ROTATION_NAV)) + " %\n");
                 mStrBuffer.append("\n");
             }
@@ -588,26 +588,24 @@ public class MainActivityPilotage extends AppCompatActivity {
 	}
 	
 	private void SetIndicatorNavData(){
-			if (bIndicBatterie == true) {
-                txtNavBatterie.setText("Batt: " + iNavBatterie + "%");
-            }
-            if(bIndicAltitude ==true) {
-                txtNavAltitude.setText("Alt: " + iNavAv_Ar + "m");
-            }
-            if(bIndicVitesse==true) {
-                txtNavSpeed.setText("Vitt: " + iNavSpeed + "m/s");
-            }
-            if(bIndicAvArr==true) {
-                txtNavAvArr.setText("Av/Ar: " + iNavAv_Ar);
-            }
-            if(bIndicGD ==true) {
-                txtNavG_D.setText("G/D: " + iNavG_D);
-            }
-            if(bIndicRotation==true) {
-                txtNavRot.setText("Rot :" + iNavRot);
-            }
-
-
+        if (bIndicBatterie == true) {
+            txtNavBatterie.setText(getString(R.string.battery_short, iNavBatterie));
+        }
+        if(bIndicAltitude ==true) {
+            txtNavAltitude.setText(getString(R.string.altitude_short, iNavAv_Ar));
+        }
+        if(bIndicVitesse==true) {
+            txtNavSpeed.setText(getString(R.string.speed_short, iNavSpeed));
+        }
+        if(bIndicAvArr==true) {
+            txtNavAvArr.setText(getString(R.string.forward_backward_short, iNavAv_Ar));
+        }
+        if(bIndicGD ==true) {
+            txtNavG_D.setText(getString(R.string.left_right_short, iNavG_D));
+        }
+        if(bIndicRotation==true) {
+            txtNavRot.setText(getString(R.string.rotation_short, iNavRot));
+        }
 	}
 
     @Override

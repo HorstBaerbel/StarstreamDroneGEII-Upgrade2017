@@ -104,7 +104,7 @@ public class SettingStartupActivity extends AppCompatActivity {
         //We hide the button at start
         fab.hide();
 
-        getSupportActionBar().setTitle("Configuration de démarrage du drone");
+        getSupportActionBar().setTitle(R.string.drone_settings);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
